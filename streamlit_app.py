@@ -1,6 +1,12 @@
 # app.py
 
 import streamlit as st
+
+# Install required packages
+st.sidebar.text("Installing required packages...")
+st.sidebar.code("!pip install matplotlib wordcloud seaborn pandas")
+
+# Import the installed packages
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import seaborn as sns
