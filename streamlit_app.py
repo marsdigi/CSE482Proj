@@ -1,29 +1,19 @@
 # app.py
 
 import streamlit as st
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
-import seaborn as sns
+import plotly.express as px
+import plotly.figure_factory as ff
 import pandas as pd
 
-# Function to create word cloud with sentiment-based coloring
-def create_wordcloud(sentiments, title="Word Cloud", colormap='RdYlGn'):
-    # Generate a word cloud from the sentiments dictionary
-    wordcloud = WordCloud(width=800, height=400, background_color='white', colormap=colormap).generate_from_frequencies(sentiments)
+# Function to create word cloud with sentiment-based coloring using Plotly
+def create_wordcloud(sentiments, title="Word Cloud"):
+    fig = px.imshow(sentiments, color_continuous_scale="RdYlGn", title=title)
+    st.plotly_chart(fig)
 
-    # Display the word cloud
-    st.pyplot(plt.figure(figsize=(10, 5)))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    plt.title(title)
-    st.pyplot()
-
-# Function to create a heatmap of sentiment scores
-def create_heatmap(sentiments_df, title="Sentiment Heatmap", cmap='RdYlGn_r'):  # Note: '_r' reverses the colormap
-    st.pyplot(plt.figure(figsize=(10, 6)))
-    sns.heatmap(sentiments_df, annot=True, cmap=cmap, fmt=".2f", linewidths=.5, cbar=False)
-    plt.title(title)
-    st.pyplot()
+# Function to create a heatmap of sentiment scores using Plotly
+def create_heatmap(sentiments_df, title="Sentiment Heatmap"):
+    fig = px.imshow(sentiments_df, color_continuous_scale="RdYlGn_r", labels=dict(color="Sentiment Score"), title=title)
+    st.plotly_chart(fig)
 
 # Sample DataFrame for demonstration purposes
 descriptors_sentiments_data = {
@@ -36,16 +26,11 @@ descriptors_sentiments_df = pd.DataFrame(descriptors_sentiments_data, index=['Ke
 
 # Display the word clouds and heatmap
 for key_term, column_data in descriptors_sentiments_df.iterrows():
-    # Create a dictionary to store the word cloud data for the current key term
-    wordcloud_dict = {}
-
-    # Iterate over the rows of the DataFrame for the current key term
-    for term, sentiment, occurrences in column_data.iteritems():
-        # Add the term and its frequency (occurrences) to the dictionary
-        wordcloud_dict[term] = occurrences
-
+    # Create a DataFrame for the word cloud data for the current key term
+    wordcloud_df = pd.DataFrame(list(column_data.iteritems()), columns=['Term', 'Occurrences'])
+    
     # Create a word cloud for the current key term
-    create_wordcloud(wordcloud_dict, title=f"Word Cloud for Key Term: {key_term}")
+    create_wordcloud(wordcloud_df, title=f"Word Cloud for Key Term: {key_term}")
 
 # Create a heatmap of sentiment scores for all key terms
 create_heatmap(descriptors_sentiments_df, title="Sentiment Heatmap for Key Terms")
