@@ -1,11 +1,19 @@
 # app.py
 
 import streamlit as st
+import pandas as pd
 
 def main():
-    st.title("CSE-482 Project Application")
-    
-    # Add some text to the app
+    st.title("Automated Event Detection and Summarization on Reddit")
+
+    # Display a sample DataFrame
+    st.subheader("Sample DataFrame:")
+    sample_data = {'Column 1': [1, 2, 3, 4],
+                   'Column 2': ['A', 'B', 'C', 'D']}
+    df = pd.DataFrame(sample_data)
+    st.dataframe(df)
+
+    # User Input
     st.write("CSE-482 Project app!")
 
     # Add a simple input widget
@@ -17,4 +25,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
