@@ -2,3 +2,4 @@ streamlit
 nltk==3.6.3
 spacy
 matplotlib==3.4.2
+wordcloud==1.8.1
