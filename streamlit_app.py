@@ -14,28 +14,6 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from textblob import TextBlob  # For sentiment analysis
 
-# Cell for database connection and data loading
-
-# MongoDB connection URI
-mongodb_uri = "mongodb+srv://CSE_Reddit_Scraper:GoGreen@datasciencebiolab.urjjj09.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp"
-
-# Specifying the database and collection names
-database_name = 'CSE_Reddit'
-collection_name = 'CSE Better Data 1'
-
-# Establishing a connection to the MongoDB database
-client = MongoClient(mongodb_uri)
-db = client[database_name]
-collection = db[collection_name]
-
-# Loading data from the MongoDB collection into a pandas DataFrame
-df = pd.DataFrame(list(collection.find()))
-
-# Closing the MongoDB connection after data loading is completed
-client.close()
-
-df
-
 # Download necessary NLTK data
 nltk.download('punkt')
 nltk.download('stopwords')
