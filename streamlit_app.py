@@ -2,16 +2,6 @@
 import streamlit as st
 
 
-
-
-
-
-
-
-
-
-
-
 import re
 import nltk
 import spacy
@@ -41,8 +31,7 @@ collection = db[collection_name]
 
 df = pd.DataFrame(list(collection.find()))
 
-client.close()  # Close the connection as soon as we're done with it
-
+client.close()  
 
 # Cell for data preprocessing
 lemmatizer = WordNetLemmatizer()
