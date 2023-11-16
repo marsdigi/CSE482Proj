@@ -3,7 +3,7 @@
 import streamlit as st
 
 def main():
-    st.title("My Streamlit App")
+    st.title("CSE-482 Project Application")
     
     # Add some text to the app
     st.write("CSE-482 Project app!")
