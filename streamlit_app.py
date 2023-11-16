@@ -21,7 +21,7 @@ nltk.download('wordnet')
 
 
 #Cell for database connection and data loading
-mongodb_uri = "mongodb+srv://CSE_Reddit_Scraper:GoGreen@datasciencebiolab.urjjj09.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp"
+mongodb_uri = "mongodb://CSE_Reddit_Scraper:GoGreen@datasciencebiolab.urjjj09.mongodb.net:27017/CSE_Reddit?retryWrites=true&w=majority"
 database_name = 'CSE_Reddit'
 collection_name = 'CSE Better Data 1'
 
