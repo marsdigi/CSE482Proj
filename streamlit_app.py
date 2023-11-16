@@ -6,7 +6,7 @@ def main():
     st.title("My Streamlit App")
     
     # Add some text to the app
-    st.write("Welcome to my Streamlit app!")
+    st.write("CSE-482 Project app!")
 
     # Add a simple input widget
     user_input = st.text_input("Enter your name:")
