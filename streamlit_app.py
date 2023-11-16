@@ -1,10 +1,7 @@
 # app.py
 import streamlit as st
-
-
 import re
 import nltk
-import spacy
 import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
@@ -12,26 +9,26 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from pymongo import MongoClient
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from textblob import TextBlob  # For sentiment analysis
 
 # Download necessary NLTK data
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-
-#Cell for database connection and data loading
+# Cell for database connection and data loading
 mongodb_uri = "mongodb://CSE_Reddit_Scraper:GoGreen@datasciencebiolab.urjjj09.mongodb.net:27017/CSE_Reddit?retryWrites=true&w=majority"
 database_name = 'CSE_Reddit'
 collection_name = 'CSE Better Data 1'
 
-client = MongoClient(mongodb_uri)
-db = client[database_name]
-collection = db[collection_name]
+try:
+    client = MongoClient(mongodb_uri)
+    db = client[database_name]
+    collection = db[collection_name]
 
-df = pd.DataFrame(list(collection.find()))
+    df = pd.DataFrame(list(collection.find()))
 
-client.close()  
+finally:
+    client.close()
 
 # Cell for data preprocessing
 lemmatizer = WordNetLemmatizer()
@@ -62,8 +59,6 @@ plt.figure(figsize=(15, 10))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
 plt.show()
-
-
 
 
 
