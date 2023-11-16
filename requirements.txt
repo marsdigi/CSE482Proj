@@ -4,5 +4,5 @@ spacy
 matplotlib==3.4.2
 wordcloud==1.8.1
 scikit-learn==0.24.2
-pymongo==3.11.0
+pymongo
 textblob
