@@ -1,7 +1,4 @@
-# app.py
 import streamlit as st
-
-
 import re
 import nltk
 import spacy
@@ -12,26 +9,39 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from pymongo import MongoClient
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from textblob import TextBlob  # For sentiment analysis
+from textblob import TextBlob
 
 # Download necessary NLTK data
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
+# Cell for database connection and data loading
 
-#Cell for database connection and data loading
+# MongoDB connection URI
 mongodb_uri = "mongodb+srv://CSE_Reddit_Scraper:GoGreen@datasciencebiolab.urjjj09.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp"
+
+# Specifying the database and collection names
 database_name = 'CSE_Reddit'
 collection_name = 'CSE Better Data 1'
 
-client = MongoClient(mongodb_uri)
-db = client[database_name]
-collection = db[collection_name]
+try:
+    # Establishing a connection to the MongoDB database
+    client = MongoClient(mongodb_uri)
+    db = client[database_name]
+    collection = db[collection_name]
 
-df = pd.DataFrame(list(collection.find()))
+    # Loading data from the MongoDB collection into a pandas DataFrame
+    df = pd.DataFrame(list(collection.find()))
 
-client.close()  
+    # Closing the MongoDB connection after data loading is completed
+    client.close()
+except Exception as e:
+    st.error(f"Error connecting to MongoDB: {e}")
+    # Print the full error traceback for debugging purposes
+    st.exception(e)
+    # Set df to an empty DataFrame or handle the error as appropriate
+    df = pd.DataFrame()
 
 # Cell for data preprocessing
 lemmatizer = WordNetLemmatizer()
@@ -61,7 +71,11 @@ wordcloud = WordCloud(width=800, height=400, background_color='white').generate_
 plt.figure(figsize=(15, 10))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
-plt.show()
+st.pyplot(plt)
+
+# Display the DataFrame
+df
+
 
 
 
