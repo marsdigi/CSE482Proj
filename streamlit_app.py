@@ -1,13 +1,27 @@
-
 # app.py
 import streamlit as st
 import pandas as pd
+import seaborn as sns
+import plotly.express as px
+
+# Load the iris dataset
+iris = sns.load_dataset('iris')
+
+# Create a scatter plot using Plotly Express
+fig = px.scatter(iris, x='sepal_width', y='sepal_length', color='species',
+                 title='Sepal Width vs Sepal Length by Species')
+
+# Save the iris dataset to a CSV file
+iris.to_csv('iris_data.csv', index=False)
 
 # Load the CSV data into a pandas DataFrame
 df = pd.read_csv('word_cloud_for_key_term__hamas_wordcloud.csv')
 
 # Display the DataFrame in the Streamlit app
 st.write(df)
+
+# Show the plot
+st.plotly_chart(fig)
 
 def main():
     st.header("Project: Automated Event Detection and Summarization for Reddit")
