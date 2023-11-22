@@ -1,6 +1,13 @@
 
 # app.py
 import streamlit as st
+import pandas as pd
+
+# Load the CSV data into a pandas DataFrame
+df = pd.read_csv('word_cloud_for_key_term__hamas_wordcloud.csv')
+
+# Display the DataFrame in the Streamlit app
+st.write(df)
 
 def main():
     st.header("Project: Automated Event Detection and Summarization for Reddit")
