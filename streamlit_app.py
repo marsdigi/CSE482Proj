@@ -88,9 +88,9 @@ def display_section(selected_tab):
         st.write("Future enhancements may involve optimizing for real-time processing, "
                  "expanding to multiple subreddits/platforms, and implementing a user interface for more accessible interaction.")
 
-    elif selected_tab == "Related Work":
-        st.header("Related Work")
-        st.write(df)  # Display DataFrame for the Related Work tab
+    elif selected_tab == "Sentiment Scores":
+        st.header("Sentiment Scores")
+        st.write(df)  # Display DataFrame for the Sentiment Scores
 
     elif selected_tab == "Proposed Solution":
         st.header("Proposed Solution")
