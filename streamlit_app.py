@@ -97,7 +97,7 @@ def display_section(selected_tab):
         st.write("Content for the Proposed Solution tab")
 
 # Create sidebar with tabs
-selected_tab = st.sidebar.radio("Navigation", ["Home", "Related Work", "Proposed Solution"])
+selected_tab = st.sidebar.radio("Navigation", ["Home", "Sentiment Scores", "Proposed Solution"])
 
 # Display content based on selected tab
 display_section(selected_tab)
