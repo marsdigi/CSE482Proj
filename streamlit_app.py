@@ -21,6 +21,8 @@ df = pd.read_csv('word_cloud_for_key_term__hamas_wordcloud.csv')
 def display_section(selected_tab):
     if selected_tab == "Project Description":
         st.header("Project: Automated Event Detection and Summarization for Reddit")
+        st.write("Developed by: Kevin Mok, Brendan Wieferich, Marshal DiGiovanni, Jacob House, Roshan Atluri")
+
 
         st.subheader("1. Problem Definition")
         
@@ -105,5 +107,3 @@ display_section(selected_tab)
 if selected_tab == "Project Description":
     # Show the plot
     st.plotly_chart(fig)
-
-# Rest of your main function
