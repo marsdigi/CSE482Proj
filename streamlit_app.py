@@ -17,11 +17,35 @@ iris.to_csv('iris_data.csv', index=False)
 # Load the CSV data into a pandas DataFrame
 df = pd.read_csv('word_cloud_for_key_term__hamas_wordcloud.csv')
 
-# Display the DataFrame in the Streamlit app
-st.write(df)
+# Function to display different sections based on the selected tab
+def display_section(selected_tab):
+    if selected_tab == "Home":
+        st.header("Project: Automated Event Detection and Summarization for Reddit")
+        # ... (rest of your content for the Home tab)
 
-# Show the plot
-st.plotly_chart(fig)
+    elif selected_tab == "Related Work":
+        st.header("Related Work")
+        # ... (content for the Related Work tab)
+
+    elif selected_tab == "Proposed Solution":
+        st.header("Proposed Solution")
+        # ... (content for the Proposed Solution tab)
+
+# Create sidebar with tabs
+selected_tab = st.sidebar.radio("Navigation", ["Home", "Related Work", "Proposed Solution"])
+
+# Display content based on selected tab
+display_section(selected_tab)
+
+if selected_tab == "Home":
+    # Show the plot
+    st.plotly_chart(fig)
+
+elif selected_tab == "Related Work":
+    st.write(df)  # Display DataFrame for the Related Work tab
+
+elif selected_tab == "Proposed Solution":
+    st.write("Content for the Proposed Solution tab")
 
 def main():
     st.header("Project: Automated Event Detection and Summarization for Reddit")
