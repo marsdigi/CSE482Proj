@@ -19,7 +19,7 @@ df = pd.read_csv('word_cloud_for_key_term__hamas_wordcloud.csv')
 
 # Function to display different sections based on the selected tab
 def display_section(selected_tab):
-    if selected_tab == "Home":
+    if selected_tab == "Project Description":
         st.header("Project: Automated Event Detection and Summarization for Reddit")
 
         st.subheader("1. Problem Definition")
@@ -97,12 +97,12 @@ def display_section(selected_tab):
         st.write("Content for the Proposed Solution tab")
 
 # Create sidebar with tabs
-selected_tab = st.sidebar.radio("Navigation", ["Home", "Sentiment Scores", "Proposed Solution"])
+selected_tab = st.sidebar.radio("Navigation", ["Project Description", "Sentiment Scores", "Proposed Solution"])
 
 # Display content based on selected tab
 display_section(selected_tab)
 
-if selected_tab == "Home":
+if selected_tab == "Project Description":
     # Show the plot
     st.plotly_chart(fig)
 
